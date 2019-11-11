@@ -41,13 +41,13 @@ function addNumbers(num1, num2) {
 */
 function makePersonObject(id, name, email) {
   
-  const worker = {
-    "id": 1,
-    "name": 'Luke',
-    "email": 'luke@luke.com'
+  const personObject = {
+    "id": id,
+    "name": name,
+    "email": email,
   }
 
-return worker
+return personObject;
 
 }
 
@@ -156,7 +156,10 @@ function get3rdCar(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoByIndex(inventory, index) {
-  /* code here */
+  const carInfo = inventory.find((item, index) => {
+    return index === 0 
+  })
+  return `This is a ${carInfo.car_make} ${carInfo.car_model}`
 }
 
 /**
@@ -170,9 +173,10 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
-  /* code here */
+function getLastCarInfo(inventory) {
+  return `This is a ${inventory.slice(-1)[0].car_make} ${inventory.slice(-1)[0].car_model}`;
 }
+
 
 /**
  * ### Challenge `getCarInfoById`
