@@ -271,10 +271,16 @@ return olderCars;
 */
 
 function getGermanCars(inventory) {
-  let germanCars = [`Audi`, `Mercedes-Benz`, `Volkswagen`, `BMW`];
+  let germanCars = [];
   for (let i = 0; i < inventory.length; i++){
-    germanCars.push(inventory[i].car_make)
+    let carBrand = inventory[i];
+    if (carBrand.car_make === "Audi" || 
+    carBrand.car_make === "Mercedes-Benz" ||
+    carBrand.car_make === "Volkswagen" || 
+    carBrand.car_make === "BMW") {
+    germanCars.push(carBrand)
   }
+}
   return germanCars;
 }
 
