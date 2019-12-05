@@ -269,8 +269,16 @@ return olderCars;
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
+
 function getGermanCars(inventory) {
+  let germanCars = [`Audi`, `Mercedes-Benz`, `Volkswagen`, `BMW`];
+  for (let i = 0; i < inventory.length; i++){
+    germanCars.push(inventory[i].car_make)
+  }
+  return germanCars;
 }
+
+
 
 
 
@@ -294,16 +302,17 @@ function getGermanCars(inventory) {
  *   return num * 2
  * }
 */
-const sum = null; // code here!
-const addFive = null; // code here!
-const argTimesTwo = null; // code here!
+const sum = (a, b) => {
+  return a + b;
+} 
 
+const addFive = (num) => {
+  return num + 5;
+}
 
-
-
-
-
-
+const argTimesTwo = (num) => {
+  return num * 2;
+}
 
 
 
@@ -321,9 +330,19 @@ const argTimesTwo = null; // code here!
  *         (1) causes the odometer in the object to be increased by the distance,
  *         (2) returns the updated value of the `odometer`.
 */
-function carMaker(/* code here */) {
-  /* code here */
+function carMaker(number) {
+  const car = {
+    odometer: number,
+    drive: function (distance) {
+      this.odometer = this.odometer + distance;
+      return this.odometer;
+    }
+  }
+  return car;
 }
+
+
+
 
 /// ////// END OF CHALLENGE /////////
 /// ////// END OF CHALLENGE /////////
