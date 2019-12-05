@@ -27,7 +27,7 @@ function addNumbers(num1, num2) {
  * ### Challenge `makePersonObject`
  * 
  * @instructions
- * This function should take an id, a name and an email as arguments,
+ * This function should take an id, a name and an email as parameters,
  * and return an object with `id`, `name` and `email` properties.
  * 
  * For example, if we invoke `makePersonObject`
@@ -39,8 +39,16 @@ function addNumbers(num1, num2) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(/* code here */) {
-  /* code here */
+function makePersonObject(id, name, email) {
+  
+  const personObject = {
+    "id": id,
+    "name": name,
+    "email": email,
+  }
+
+return personObject;
+
 }
 
 /**
@@ -56,9 +64,11 @@ function makePersonObject(/* code here */) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(/* code here */) {
-  /* code here */
-}
+function getName(makePersonObject) {
+  return `Hello, my name is ${makePersonObject.name}`
+};
+
+
 
 /**
  * ### Challenge `makeSmartPerson`
@@ -73,8 +83,18 @@ function getName(/* code here */) {
  *         and returns a string like `Hello, my name is {name}`.
  *         where `{name}` is the name passed into `makeSmartPerson`.
 */
-function makeSmartPerson(/* code here */) {
-  /* code here */
+function makeSmartPerson(name) {
+    /* code here */
+  const smartPerson = {
+    name: name,
+    sum: function (num1, num2) {
+      return num1 + num2
+    },
+    speak: function () {
+      return `Hello, my name is ${name}`
+    }
+  }
+  return smartPerson
 }
 
 
@@ -135,9 +155,10 @@ function get3rdCar(inventory) {
  * For example, if getCarInfoByIndex is invoked with the inventory and the number 0,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoByIndex(inventory, index) {
-  /* code here */
-}
+function getCarInfoByIndex(inventory, carIndex) {
+  return `This is a ${inventory[carIndex].car_make} ${inventory[carIndex].car_model}`;
+  }
+ 
 
 /**
  * ### Challenge `getLastCarInfo`
@@ -150,9 +171,10 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
-  /* code here */
+function getLastCarInfo(inventory) {
+  return `This is a ${inventory.slice(-1)[0].car_make} ${inventory.slice(-1)[0].car_model}`;
 }
+
 
 /**
  * ### Challenge `getCarInfoById`
@@ -166,8 +188,8 @@ function getLastCarInfo(/* code here */) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
-  /* code here */
+function getCarInfoById(inventory, id) {
+  return `This is a ${inventory[id-1].car_make} ${inventory[id-1].car_model}`
 }
 
 /**
@@ -178,8 +200,15 @@ function getCarInfoById(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
-function sortCarInventory(/* code here */) {
-  /* code here */
+function sortCarInventory(inventory) {
+
+  return inventory.sort((a,b) => {
+    if (a.car_model > b.car_model){
+      return 1
+    } else{
+      return -1;
+    }
+  })
 }
 
 /**
@@ -191,9 +220,17 @@ function sortCarInventory(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+function getModelYears(inventory) {
+  let modelYears = [];
+  for (let i = 0; i < inventory.length; i++){
+    modelYears.push(inventory[i].car_year)
+  }
+  return modelYears;
 }
+
+
+
+
 
 /**
  * ### Challenge `getOlderCars`
@@ -207,9 +244,19 @@ function getModelYears(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
+function getOlderCars(inventory, maxYear) {
+let olderCars = [];
+for (let i = 0; i < inventory.length; i++){
+  if (inventory[i].car_year <= maxYear) {
+    olderCars.push(inventory[i])
+    }
+  }
+return olderCars;
 }
+
+
+
+
 
 /**
  * ### Challenge `getGermanCars`
@@ -222,9 +269,26 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
+
+function getGermanCars(inventory) {
+  let germanCars = [];
+  for (let i = 0; i < inventory.length; i++){
+    let carBrand = inventory[i];
+    if (carBrand.car_make === "Audi" || 
+    carBrand.car_make === "Mercedes-Benz" ||
+    carBrand.car_make === "Volkswagen" || 
+    carBrand.car_make === "BMW") {
+    germanCars.push(carBrand)
+  }
 }
+  return germanCars;
+}
+
+
+
+
+
+
 
 /**
  * ### Challenge refactor to arrow functions
@@ -244,9 +308,20 @@ function getGermanCars(/* code here */) {
  *   return num * 2
  * }
 */
-const sum = null; // code here!
-const addFive = null; // code here!
-const argTimesTwo = null; // code here!
+const sum = (a, b) => {
+  return a + b;
+} 
+
+const addFive = (num) => {
+  return num + 5;
+}
+
+const argTimesTwo = (num) => {
+  return num * 2;
+}
+
+
+
 
 /**
  * ### Challenge `carMaker`
@@ -261,9 +336,19 @@ const argTimesTwo = null; // code here!
  *         (1) causes the odometer in the object to be increased by the distance,
  *         (2) returns the updated value of the `odometer`.
 */
-function carMaker(/* code here */) {
-  /* code here */
+function carMaker(number) {
+  const car = {
+    odometer: number,
+    drive: function (distance) {
+      this.odometer = this.odometer + distance;
+      return this.odometer;
+    }
+  }
+  return car;
 }
+
+
+
 
 /// ////// END OF CHALLENGE /////////
 /// ////// END OF CHALLENGE /////////
